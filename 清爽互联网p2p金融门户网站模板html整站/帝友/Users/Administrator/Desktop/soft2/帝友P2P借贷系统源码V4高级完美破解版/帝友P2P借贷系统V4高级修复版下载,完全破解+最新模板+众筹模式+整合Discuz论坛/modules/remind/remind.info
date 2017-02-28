@@ -1,9 +1,0 @@
-<?
-		$code = "remind";
-		$name = "提醒设置";
-		$description = "提醒设置";
-		$version = "1.0";
-		$author = "dwcms";
-		$date = "2010-08-01";
-		$type = "remind";
-		?>
