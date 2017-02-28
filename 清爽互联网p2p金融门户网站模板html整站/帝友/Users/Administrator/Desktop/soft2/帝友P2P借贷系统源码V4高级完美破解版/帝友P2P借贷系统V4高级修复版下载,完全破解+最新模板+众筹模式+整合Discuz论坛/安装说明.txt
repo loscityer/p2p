@@ -1,0 +1,32 @@
+
+
+-----------------------------------------------------------
+
+
+安装说明：
+
+1.上传网站服务器
+
+2.运行帝国备份/ebak    账号 admin  密码 123456
+
+	恢复数据 过程略（配置数据库）
+3.恢复成功后，修改数据库配置文件
+
+	修改core/common.inc.php
+		bbs/config/config_global.php
+		bbs/config/config_ucenter.php
+		bbs/uc_server/config_ucenter.php
+		modules/ucenter/config.inc.php
+
+4.修改uc接口
+登陆bbs/uc_server  密码123456
+点击应用找到自己的主站跟网贷的接口，把网址修改成自己的，如：bbs.52codes.net
+进网贷后台。点新开发功能。uc的接口设置，写上数据库信息
+
+登陆后台 http://域名/?admin 
+
+  账号密码  admin  bbs.52codes.net
+
+-------------------------------------------
+
+提醒：必须伪静态

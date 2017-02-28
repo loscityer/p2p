@@ -1,0 +1,14 @@
+前台公共文件路径：web下的public
+后台公共文件路径：web下的houtai
+访问路径：r=控制器/方法
+
+
+前台公共的头部放在layout目录下的layout.php
+加载公共头部 $this->layout='layout'
+
+
+后台模块：modules
+下面有后台的控制器位置controllers 视图层views
+访问路径：r=index.php?r=admin/控制器/方法
+
+

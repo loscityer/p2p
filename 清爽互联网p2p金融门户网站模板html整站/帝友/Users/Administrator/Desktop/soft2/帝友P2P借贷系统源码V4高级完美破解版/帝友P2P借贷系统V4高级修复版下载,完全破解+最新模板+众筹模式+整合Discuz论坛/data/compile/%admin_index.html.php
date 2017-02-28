@@ -1,0 +1,53 @@
+<? $this->magic_include(array('file' => "admin_head.html", 'vars' => array()));?>
+
+			 <table  border="0"  cellspacing="1" bgcolor="#CCCCCC" width="100%">
+			  
+				
+			  <tr>
+					<td colspan="2" bgcolor="#ffffff" class="main_td2" >
+					<div class="main_title">提醒：系统基本运行环境概括</div>					</td>
+				</tr>
+				<tr>
+					<td class="main_td1" align="right" width="15%">环境要求:</td>
+					<td class="main_td1" align="left">jsp+jdk+Tomcat5.0以上</td>
+				</tr>
+				<tr>
+					<td class="main_td1" align="right" width="15%">JDK:</td>
+					<td class="main_td1" align="left">JDK(Java Development Kit) v7.0 以上</td>
+				</tr>
+				<tr>
+					<td class="main_td1" align="right" width="15%">Tomcat</td>
+					<td class="main_td1" align="left">Tomcat5.0+</td>
+				</tr>
+
+				<tr>
+					<td class="main_td1" align="right" width="15%">硬盘数据:</td>
+					<td class="main_td1" align="left">50G及以上</td>
+				</tr>
+				<tr>
+					<td class="main_td1" align="right" width="15%">内存:</td>
+					<td class="main_td1" align="left">2G及以上</td>
+				</tr>
+			  <tr>
+					<td colspan="2" bgcolor="#ffffff" class="main_td2" >
+					<div class="main_title">网站系统信息</div>					</td>
+				</tr>
+				<tr>
+					<td class="main_td1" align="right" width="15%">是否安全模式:</td>
+					<td class="main_td1" align="left"><? if (!isset($this->magic_vars['_A']['php_info']['sp_safe_mode'])) $this->magic_vars['_A']['php_info']['sp_safe_mode'] = ''; echo $this->magic_vars['_A']['php_info']['sp_safe_mode']; ?></td>
+				</tr>
+				<tr>
+					<td class="main_td1" align="right" width="15%">服务器操作系统:</td>
+					<td class="main_td1" align="left"><? if (!isset($this->magic_vars['_A']['php_info']['sp_os'])) $this->magic_vars['_A']['php_info']['sp_os'] = ''; echo $this->magic_vars['_A']['php_info']['sp_os']; ?></td>
+				</tr>
+				<tr>
+					<td class="main_td1" align="right" width="15%">服务器IP:</td>
+					<td class="main_td1" align="left"><? if (!isset($this->magic_vars['_A']['php_info']['sp_host'])) $this->magic_vars['_A']['php_info']['sp_host'] = ''; echo $this->magic_vars['_A']['php_info']['sp_host']; ?></td>
+				</tr>
+				<tr>
+				  <td class="main_td1" align="right">技术支持：</td>
+				  <td class="main_td1" align="left"><a href="http://bbs.52codes.net/thread-27637-1-1.html">吾爱源码 bbs.52codes.net</a></td>
+			   </tr>
+				<tr>
+			   </tr>
+	      </table>

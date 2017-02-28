@@ -1,0 +1,19 @@
+RewriteEngine On
+RewriteBase /
+# RewriteπÊ‘Ú
+
+
+
+RewriteRule	^user/(.*)/(.*)/(.*)$ /index.php?user&user_id=$1&q=code/$2/$3
+RewriteRule	^user/(.*)/(.*)$ /index.php?user&user_id=$1&q=code/$2
+RewriteRule	^user/(.*)$ /index.php?user&user_id=$1
+RewriteRule	^u/(.*)/(.*)$ /index.php?home&user_id=$1&q=$2
+RewriteRule	^u/(.*)$ /index.php?home&user_id=$1
+RewriteRule	^(.*)/(.*)/index(.*).html$ /index.php?$1&nid=$2&page=$3
+RewriteRule	^(.*)/(.*)/a(.*).html?(.*)$ /index.php?$1&nid=$2&article_id=$3&$4
+RewriteRule	^(.*)/index(.*).html?(.*)$ /index.php?$1&page=$2&$3
+RewriteRule	^(.*)/a(.*)_(.*).html$ /index.php?$1&article_id=$2&page=$3
+RewriteRule	^(.*)/a(.*).html?(.*)$ /index.php?$1&article_id=$2&$3
+
+
+

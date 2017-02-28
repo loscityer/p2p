@@ -1,0 +1,242 @@
+<? if (!isset($_REQUEST['check'])) $_REQUEST['check']=''; ;if (  $_REQUEST['check']==""): ?>
+<ul class="nav3">
+<li><a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>" id="c_so">发标待审核</a></li> 
+<li><a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&status=1">正在借款标</a></li> 
+<li><a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&status=2">失败借款标</a></li> 
+<li><a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&status=3">已还完的标</a></li> 
+<li><a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&status=5">流标</a></li> 
+<li><a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&status=6">过期标</a></li>
+</ul> 
+<div class="module_add">
+	<div class="module_title"><strong>借款列表</strong></div>
+</div>
+<table  border="0"  cellspacing="1" bgcolor="#CCCCCC" width="100%">
+	  <form action="" method="post">
+		<tr>
+			<td width="" class="main_td">ID</td>
+			<td width="*" class="main_td">用户名称</td>
+			<td width="" class="main_td">积分</td>
+			<td width="" class="main_td">借款标题</td>
+			<td width="" class="main_td">借款金额</td>
+			<td width="" class="main_td">利率</td>
+			<td width="" class="main_td">借款期限</td>
+			<td width="" class="main_td">还款方式</td>
+			<td width="" class="main_td">借款类型</td>
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;if (  $_REQUEST['status']=="-1"): ?>
+			<td width="" class="main_td">状态</td>
+			<td width="" class="main_td">初审时间</td>
+			<td width="" class="main_td">有效期</td>
+			<td width="" class="main_td">过期时间</td>
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;elseif (  $_REQUEST['status']=="1"): ?>
+			<td width="" class="main_td">已投金额</td>
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;elseif (  $_REQUEST['status']=="2"): ?>
+			<td width="" class="main_td">状态</td>
+			<td width="" class="main_td">初审时间</td>
+			<td width="" class="main_td">审核备注</td>
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;elseif (  $_REQUEST['status']==""): ?>
+			<td width="" class="main_td">添加时间</td>
+			<? else: ?>
+			<td width="" class="main_td">状态</td>
+			<? endif; ?>
+			<td width="" class="main_td">查看</td>
+		</tr>
+		<? $this->magic_vars['query_type']='GetList';$data = array('var'=>'loop','borrow_name'=>isset($_REQUEST['borrow_name'])?$_REQUEST['borrow_name']:'','is_flow'=>isset($_REQUEST['is_flow'])?$_REQUEST['is_flow']:'','borrow_nid'=>isset($_REQUEST['borrow_nid'])?$_REQUEST['borrow_nid']:'','username'=>isset($_REQUEST['username'])?$_REQUEST['username']:'','query_type'=>'first','status'=>isset($_REQUEST['status'])?$_REQUEST['status']:'','dotime1'=>isset($_REQUEST['dotime1'])?$_REQUEST['dotime1']:'','dotime2'=>isset($_REQUEST['dotime2'])?$_REQUEST['dotime2']:'');$data['page'] = intval(isset($_REQUEST['page'])?$_REQUEST['page']:'');  require_once(ROOT_PATH.'modules/borrow/borrow.class.php');$this->magic_vars['magic_result'] = borrowClass::GetList($data); $this->magic_vars['loop']=  $this->magic_vars['magic_result']; $this->magic_vars['loop']['list'] =  $this->magic_vars['magic_result']['list']; $this->magic_vars['loop']['page'] =  intval($this->magic_vars['magic_result']['page']); $this->magic_vars['loop']['epage'] =  $this->magic_vars['magic_result']['epage']; $this->magic_vars['loop']['total'] =  $this->magic_vars['magic_result']['total']; $this->magic_vars['loop']['pages'] =  array('total'=>$this->magic_vars['magic_result']['total'],'page'=>$this->magic_vars['magic_result']['page'],'epage'=>$this->magic_vars['magic_result']['epage']);?>
+		<?  if(!isset($this->magic_vars['loop']['list']) || $this->magic_vars['loop']['list']=='') $this->magic_vars['loop']['list'] = array();  $_from = $this->magic_vars['loop']['list']; 
+ if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); } 
+if (count($_from)>0):
+;    foreach ($_from as $this->magic_vars['key'] =>  $this->magic_vars['item']):
+?>
+		<tr  <? if (!isset($this->magic_vars['key'])) $this->magic_vars['key']=''; ;if (  $this->magic_vars['key']%2==1): ?> class="tr2"<? endif; ?>>
+			<td><? if (!isset($this->magic_vars['item']['id'])) $this->magic_vars['item']['id'] = ''; echo $this->magic_vars['item']['id']; ?><input type="hidden" name="id[]" value="<? if (!isset($this->magic_vars['item']['id'])) $this->magic_vars['item']['id'] = ''; echo $this->magic_vars['item']['id']; ?>" /></td>
+			<td class="main_td1" align="center"><a href="javascript:void(0)" onclick='tipsWindown("用户详细信息查看","url:get?<? if (!isset($this->magic_vars['_A']['admin_url'])) $this->magic_vars['_A']['admin_url'] = ''; echo $this->magic_vars['_A']['admin_url']; ?>&q=module/users/view&user_id=<? if (!isset($this->magic_vars['item']['user_id'])) $this->magic_vars['item']['user_id'] = ''; echo $this->magic_vars['item']['user_id']; ?>",500,230,"true","","true","text");'>	<? if (!isset($this->magic_vars['item']['username'])) $this->magic_vars['item']['username'] = ''; echo $this->magic_vars['item']['username']; ?></a></td>
+			<td><? if (!isset($this->magic_vars['item']['credit']['approve_credit'])) $this->magic_vars['item']['credit']['approve_credit'] = '';$_tmp = $this->magic_vars['item']['credit']['approve_credit'];$_tmp = $this->magic_modifier("credit",$_tmp,"credit");echo $_tmp;unset($_tmp); ?></td>
+			<td title="<? if (!isset($this->magic_vars['item']['name'])) $this->magic_vars['item']['name'] = ''; echo $this->magic_vars['item']['name']; ?>"><a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&view=<? if (!isset($this->magic_vars['item']['borrow_nid'])) $this->magic_vars['item']['borrow_nid'] = ''; echo $this->magic_vars['item']['borrow_nid']; ?>"><? if (!isset($this->magic_vars['item']['name'])) $this->magic_vars['item']['name'] = '';$_tmp = $this->magic_vars['item']['name'];$_tmp = $this->magic_modifier("truncate",$_tmp,"10");echo $_tmp;unset($_tmp); ?></a></td>
+			<td><? if (!isset($this->magic_vars['item']['account'])) $this->magic_vars['item']['account'] = ''; echo $this->magic_vars['item']['account']; ?>元</td>
+			<td><? if (!isset($this->magic_vars['item']['borrow_apr'])) $this->magic_vars['item']['borrow_apr'] = ''; echo $this->magic_vars['item']['borrow_apr']; ?>%</td>
+			<td><? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;if (  $this->magic_vars['item']['borrow_period'] == 0.03): ?>1天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.06): ?>2天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.10): ?>3天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.13): ?>4天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.16): ?>5天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.20): ?>6天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.23): ?>7天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.26): ?>8天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.30): ?>9天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.33): ?>10天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.36): ?>11天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.40): ?>12天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.43): ?>13天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.46): ?>14天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.50): ?>15天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.53): ?>16天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.56): ?>17天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.60): ?>18天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.63): ?>19天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.66): ?>20天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.70): ?>21天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.73): ?>22天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.76): ?>23天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.80): ?>24天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.83): ?>25天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.86): ?>26天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.90): ?>27天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.93): ?>28天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.96): ?>29天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] == 0.10): ?>30天
+                            	<? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']='';if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period']=''; ;elseif (  $this->magic_vars['item']['borrow_period'] >= 1 &&  $this->magic_vars['item']['borrow_period']<10): ?><? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period'] = '';$_tmp = $this->magic_vars['item']['borrow_period'];$_tmp = $this->magic_modifier("truncate",$_tmp,"1");echo $_tmp;unset($_tmp); ?>个月
+                            	<? else: ?><? if (!isset($this->magic_vars['item']['borrow_period'])) $this->magic_vars['item']['borrow_period'] = '';$_tmp = $this->magic_vars['item']['borrow_period'];$_tmp = $this->magic_modifier("truncate",$_tmp,"2");echo $_tmp;unset($_tmp); ?>个月
+                            	<? endif; ?></td>
+			<? if (!isset($this->magic_vars['_A']['query_type'])) $this->magic_vars['_A']['query_type']=''; ;if (  $this->magic_vars['_A']['query_type']=="success"): ?>
+			<td width="" class="main_td">￥<? if (!isset($this->magic_vars['item']['borrow_account_yes'])) $this->magic_vars['item']['borrow_account_yes'] = ''; echo $this->magic_vars['item']['borrow_account_yes']; ?></td>
+			<td width="" class="main_td"><? if (!isset($this->magic_vars['item']['tender_times'])) $this->magic_vars['item']['tender_times'] = ''; echo $this->magic_vars['item']['tender_times']; ?>次</td>
+			<? endif; ?>
+			<td><? if (!isset($this->magic_vars['item']['borrow_style'])) $this->magic_vars['item']['borrow_style'] = '';$_tmp = $this->magic_vars['item']['borrow_style'];$_tmp = $this->magic_modifier("linkages",$_tmp,"borrow_style");echo $_tmp;unset($_tmp); ?></td>
+			<td><? if (!isset($this->magic_vars['item']['vouchstatus'])) $this->magic_vars['item']['vouchstatus']=''; ;if (  $this->magic_vars['item']['vouchstatus']==1): ?><font color="#FF0000">担保标借款</font><? if (!isset($this->magic_vars['item']['is_flow'])) $this->magic_vars['item']['is_flow']=''; ;elseif (  $this->magic_vars['item']['is_flow']==1): ?><font color="#FF0000">流转借款</font><? if (!isset($this->magic_vars['item']['is_jin'])) $this->magic_vars['item']['is_jin']=''; ;elseif (  $this->magic_vars['item']['is_jin']==1): ?><font color="#FF0000">净值借款</font><? if (!isset($this->magic_vars['item']['fast_status'])) $this->magic_vars['item']['fast_status']=''; ;elseif (  $this->magic_vars['item']['fast_status']==1): ?><font color="#FF0000">抵押借款</font><? else: ?>普通标借款<? endif; ?></td>
+			
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;if (  $_REQUEST['status']=="-1"): ?>
+			<td>流标</td>
+			<td><? if (!isset($this->magic_vars['item']['verify_time'])) $this->magic_vars['item']['verify_time'] = '';$_tmp = $this->magic_vars['item']['verify_time'];$_tmp = $this->magic_modifier("date_format",$_tmp,"Y-m-d");echo $_tmp;unset($_tmp); ?></td>
+			<td><? if (!isset($this->magic_vars['item']['borrow_valid_time'])) $this->magic_vars['item']['borrow_valid_time'] = ''; echo $this->magic_vars['item']['borrow_valid_time']; ?>天</td>
+			<td><? if (!isset($this->magic_vars['item']['borrow_valid_end_time'])) $this->magic_vars['item']['borrow_valid_end_time'] = '';$_tmp = $this->magic_vars['item']['borrow_valid_end_time'];$_tmp = $this->magic_modifier("date_format",$_tmp,"Y-m-d");echo $_tmp;unset($_tmp); ?></td>
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;elseif (  $_REQUEST['status']=="1"): ?>
+			<td><? if (!isset($this->magic_vars['item']['borrow_account_yes'])) $this->magic_vars['item']['borrow_account_yes'] = ''; echo $this->magic_vars['item']['borrow_account_yes']; ?>元</td>
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;elseif (  $_REQUEST['status']=="2"): ?>
+			<td>失败</td>
+			<td><? if (!isset($this->magic_vars['item']['verify_time'])) $this->magic_vars['item']['verify_time'] = '';$_tmp = $this->magic_vars['item']['verify_time'];$_tmp = $this->magic_modifier("date_format",$_tmp,"Y-m-d");echo $_tmp;unset($_tmp); ?></td>
+			<td><? if (!isset($this->magic_vars['item']['verify_remark'])) $this->magic_vars['item']['verify_remark'] = ''; echo $this->magic_vars['item']['verify_remark']; ?></td>
+			<? if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;elseif (  $_REQUEST['status']==""): ?>
+			<td><? if (!isset($this->magic_vars['item']['addtime'])) $this->magic_vars['item']['addtime'] = '';$_tmp = $this->magic_vars['item']['addtime'];$_tmp = $this->magic_modifier("date_format",$_tmp,"");echo $_tmp;unset($_tmp); ?></td>
+			<? else: ?>
+			<td><? if (!isset($this->magic_vars['item']['borrow_type_nid'])) $this->magic_vars['item']['borrow_type_nid'] = '';$_tmp = $this->magic_vars['item']['borrow_type_nid'];$_tmp = $this->magic_modifier("linkages",$_tmp,"borrow_type_nid");echo $_tmp;unset($_tmp); ?></td>
+			<? endif; ?>
+			<td title="<? if (!isset($this->magic_vars['item']['name'])) $this->magic_vars['item']['name'] = ''; echo $this->magic_vars['item']['name']; ?>">
+            
+            <? if (!isset($this->magic_vars['item']['is_flow'])) $this->magic_vars['item']['is_flow']=''; ;if (  $this->magic_vars['item']['is_flow']==1): ?>
+            
+            <? if (!isset($this->magic_vars['item']['status'])) $this->magic_vars['item']['status']=''; ;if (  $this->magic_vars['item']['status']==5): ?>
+            
+             <a href="#" onClick="javascript:if(confirm('确定要开启流转吗?')) location.href='<? if (!isset($this->magic_vars['_A']['query_url'])) $this->magic_vars['_A']['query_url'] = ''; echo $this->magic_vars['_A']['query_url']; ?>/open_flow<? if (!isset($this->magic_vars['_A']['site_url'])) $this->magic_vars['_A']['site_url'] = ''; echo $this->magic_vars['_A']['site_url']; ?>&id=<? if (!isset($this->magic_vars['item']['id'])) $this->magic_vars['item']['id'] = ''; echo $this->magic_vars['item']['id']; ?>'">开启</a>  
+             <? if (!isset($this->magic_vars['item']['status'])) $this->magic_vars['item']['status']=''; ;elseif (  $this->magic_vars['item']['status']>0): ?>
+            <a href="#" onClick="javascript:if(confirm('确定要停止流转吗?')) location.href='<? if (!isset($this->magic_vars['_A']['query_url'])) $this->magic_vars['_A']['query_url'] = ''; echo $this->magic_vars['_A']['query_url']; ?>/stop_flow<? if (!isset($this->magic_vars['_A']['site_url'])) $this->magic_vars['_A']['site_url'] = ''; echo $this->magic_vars['_A']['site_url']; ?>&id=<? if (!isset($this->magic_vars['item']['id'])) $this->magic_vars['item']['id'] = ''; echo $this->magic_vars['item']['id']; ?>'">停止</a>
+             <? if (!isset($this->magic_vars['item']['status'])) $this->magic_vars['item']['status']=''; ;elseif (  $this->magic_vars['item']['status']==0): ?>
+             <a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&view=<? if (!isset($this->magic_vars['item']['borrow_nid'])) $this->magic_vars['item']['borrow_nid'] = ''; echo $this->magic_vars['item']['borrow_nid']; ?>">查看</a>
+             <? endif; ?>
+             
+            <? else: ?>
+            <a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&view=<? if (!isset($this->magic_vars['item']['borrow_nid'])) $this->magic_vars['item']['borrow_nid'] = ''; echo $this->magic_vars['item']['borrow_nid']; ?>">查看</a><? if (!isset($_REQUEST['status'])) $_REQUEST['status']='';if (!isset($_REQUEST['status'])) $_REQUEST['status']=''; ;if (  $_REQUEST['status']=="1" ||   $_REQUEST['status']=="6"): ?> - <a href="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&cancel=<? if (!isset($this->magic_vars['item']['borrow_nid'])) $this->magic_vars['item']['borrow_nid'] = ''; echo $this->magic_vars['item']['borrow_nid']; ?>">撤标</a><? endif; ?>
+            <? endif; ?>
+            
+            
+            </td>
+			
+		</tr>
+		<? endforeach; endif; unset($_from); ?>
+		<tr>
+		<td colspan="14" class="action">
+		<div class="floatl">
+			
+		</div>
+		<div class="floatr">
+			 标题：<input type="text" name="borrow_name" id="borrow_name" value="<? if (!isset($_REQUEST['borrow_name'])) $_REQUEST['borrow_name'] = ''; echo $_REQUEST['borrow_name']; ?>" size="8"/> 用户名：<input type="text" name="username" id="username" value="<? if (!isset($_REQUEST['username'])) $_REQUEST['username'] = ''; echo $_REQUEST['username']; ?>" size="8"/>贷款号：<input type="text" name="borrow_nid" id="borrow_nid" value="<? if (!isset($_REQUEST['borrow_nid'])) $_REQUEST['borrow_nid'] = ''; echo $_REQUEST['borrow_nid']; ?>" size="8"/>
+			 添加时间：<input type="text" name="dotime1" id="dotime1" value="<? if (!isset($_REQUEST['dotime1'])) $_REQUEST['dotime1'] = '';$_tmp = $_REQUEST['dotime1']; if (!isset($this->magic_vars['day7'])) $this->magic_vars['day7'] = '';
+$_tmp = $this->magic_modifier("default",$_tmp,$this->magic_vars['day7']);$_tmp = $this->magic_modifier("date_format",$_tmp,"Y-m-d");echo $_tmp;unset($_tmp); ?>" size="15" onclick="change_picktime()"/> 到 <input type="text"  name="dotime2" value="<? if (!isset($_REQUEST['dotime2'])) $_REQUEST['dotime2'] = '';$_tmp = $_REQUEST['dotime2']; if (!isset($this->magic_vars['nowtime'])) $this->magic_vars['nowtime'] = '';
+$_tmp = $this->magic_modifier("default",$_tmp,$this->magic_vars['nowtime']);$_tmp = $this->magic_modifier("date_format",$_tmp,"Y-m-d");echo $_tmp;unset($_tmp); ?>" id="dotime2" size="15" onclick="change_picktime()"/>
+			 <select id="is_vouch" ><option value="">全部</option><option value="1" <? if (!isset($_REQUEST['is_vouch'])) $_REQUEST['is_vouch']=''; ;if (  $_REQUEST['is_vouch']==1): ?> selected="selected"<? endif; ?>>担保标</option><option value="0" <? if (!isset($_REQUEST['is_vouch'])) $_REQUEST['is_vouch']=''; ;if (  $_REQUEST['is_vouch']=="0"): ?> selected="selected"<? endif; ?>>普通标</option></select> <input type="button" value="搜索" class="submit" onclick="sousuo('<? if (!isset($this->magic_vars['_A']['query_url'])) $this->magic_vars['_A']['query_url'] = ''; echo $this->magic_vars['_A']['query_url']; ?>/first&status=<? if (!isset($_REQUEST['status'])) $_REQUEST['status'] = ''; echo $_REQUEST['status']; ?>')">
+		</div>
+		</td>
+	</tr>
+		<tr>
+			<td colspan="14" class="page">
+			<? if (!isset($this->magic_vars['loop']['pages'])) $this->magic_vars['loop']['pages'] = '';$_tmp = $this->magic_vars['loop']['pages'];$_tmp = $this->magic_modifier("showpage",$_tmp,"");echo $_tmp;unset($_tmp); ?>
+			</td>
+		</tr>
+		<? unset($_magic_vars); ?>
+	</form>	
+</table>
+
+
+<script>
+
+var urls = '<? if (!isset($this->magic_vars['_A']['query_url'])) $this->magic_vars['_A']['query_url'] = ''; echo $this->magic_vars['_A']['query_url']; ?>/first';
+
+function sousuo(url){
+	var sou = "";
+	var username = $("#username").val();
+	if (username!="" && username!=null){
+		sou += "&username="+username;
+	}
+	var keywords = $("#keywords").val();
+	if (keywords!="" && keywords!=null){
+		sou += "&keywords="+keywords;
+	}
+	var borrow_name = $("#borrow_name").val();
+	if (borrow_name!="" && borrow_name!=null){
+		sou += "&borrow_name="+borrow_name;
+	}
+	var borrow_nid = $("#borrow_nid").val();
+	if (borrow_nid!="" && borrow_nid!=null){
+		sou += "&borrow_nid="+borrow_nid;
+	}
+	var dotime1 = $("#dotime1").val();
+	if (dotime1!="" && dotime1!=null){
+		sou += "&dotime1="+dotime1;
+	}
+	var dotime2 = $("#dotime2").val();
+	if (dotime2!="" && dotime2!=null){
+		sou += "&dotime2="+dotime2;
+	}
+	var status = $("#status").val();
+	if (status!="" && status!=null){
+		sou += "&status="+status;
+	}
+	var is_vouch = $("#is_vouch").val();
+	if (is_vouch!="" && is_vouch!=null){
+		sou += "&is_vouch="+is_vouch;
+	}
+	
+		location.href=url+sou;
+	
+}
+</script>
+
+<? else: ?>
+
+<div  style="height:255px; overflow:hidden">
+	<form name="form1" method="post" action="<? if (!isset($this->magic_vars['_A']['query_url_all'])) $this->magic_vars['_A']['query_url_all'] = ''; echo $this->magic_vars['_A']['query_url_all']; ?>&check=<? if (!isset($_REQUEST['check'])) $_REQUEST['check'] = ''; echo $_REQUEST['check']; ?>" >
+	<div class="module_border_ajax">
+		<div class="l">审核状态:</div>
+		<div class="c">
+		<input type="radio" name="status" value="1"/>初审通过 <input type="radio" name="status" value="0"  checked="checked"/>初审不通过 </div>
+	</div>
+	
+		<div class="module_border_ajax">
+		<div class="l">是否推荐:</div>
+		<div class="c">
+		<input  type="checkbox" name="recommend" value="1"/> 推荐 </div>
+	</div>
+	
+	<div class="module_border_ajax" >
+		<div class="l">审核备注:</div>
+		<div class="c">
+			<textarea name="verify_remark" cols="45" rows="7"><? if (!isset($this->magic_vars['_A']['borrow_result']['verify_remark'])) $this->magic_vars['_A']['borrow_result']['verify_remark'] = ''; echo $this->magic_vars['_A']['borrow_result']['verify_remark']; ?></textarea>
+		</div>
+	</div>
+	<div class="module_border_ajax" >
+		<div class="l">验证码:</div>
+		<div class="c">
+			<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3" onClick="$('#valicode').attr('src','/?plugins&q=imgcode&t=' + Math.random())"/>
+		</div>
+		<div class="c">
+			<img src="/?plugins&q=imgcode" id="valicode" alt="点击刷新" onClick="this.src='/?plugins&q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" />
+		</div>
+	</div>
+
+	<div class="module_submit_ajax" >
+		<input type="hidden" name="borrow_nid" value="<? if (!isset($_REQUEST['check'])) $_REQUEST['check'] = ''; echo $_REQUEST['check']; ?>" />
+		<input type="submit"  name="reset" class="submit_button" value="审核此标" />
+	</div>
+	
+</form>
+</div>
+
+<? endif; ?>
