@@ -16,7 +16,7 @@
     <h1><img src="houtai/images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心</h1>
   </div>
   <div class="head-l">
-  <a class="button button-little bg-green" href="" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;
+  <a class="button button-little bg-green" href="" ><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;
   <a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;
   <a class="button button-little bg-red" href="javascript:;" onclick="logout()"><span class="icon-power-off"></span  onclick="logout()"> 退出登录</a> </div>
 
